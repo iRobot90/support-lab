@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local chat interface for two AWS customer support projects.">
+  <title>Support Lab · iRobot90</title><link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Support Lab home"><span class="brand-mark">S<span>·</span></span><span>Support Lab<small>BY IROBOT90</small></span></a>
+      <p class="eyebrow">AWS PROJECTS / 01—02</p>
+      <nav aria-label="Choose a project">
+        <button class="project selected" data-project="novamart" aria-pressed="true"><span class="project-number">01</span><span><strong>NovaMart</strong><small>Multi-agent support</small></span><span class="project-arrow">↗</span></button>
+        <button class="project" data-project="support-flow" aria-pressed="false"><span class="project-number">02</span><span><strong>Support Flow</strong><small>Customer support workflow</small></span><span class="project-arrow">↗</span></button>
+      </nav>
+      <section class="architecture"><p class="eyebrow">BEHIND THE CONVERSATION</p><div id="route"></div><p id="project-description"></p></section>
+      <div class="sidebar-footer"><span class="small-dot"></span> Local development interface<p>Python + Amazon Bedrock<br>No credentials in your browser.</p></div>
+    </aside>
+    <main>
+      <header class="topbar"><span>PORTFOLIO / INTERACTIVE PROJECTS</span><button class="quiet" id="setup-toggle" aria-expanded="false" aria-controls="setup">Connection details <span>↗</span></button></header>
+      <section class="intro"><p class="eyebrow">A CONVERSATION WITH THE PROJECT</p><h1 id="title">Meet NovaMart.</h1><p id="subtitle">One conversation. A team of specialist agents.</p></section>
+      <div class="mode-picker"><label for="backend">Run with</label><select id="backend"><option value="local">Local workflow · no LLM</option><option value="ollama">Local AI · Ollama</option><option value="aws">Original AWS backend</option></select><span id="mode-description">Real local tools. Synthetic demo data.</span></div>
+      <section class="setup" id="setup" hidden aria-label="Connection details"><div><h2>Backend connection</h2><button class="quiet" id="close-setup" aria-label="Close connection details">Close ×</button></div><p>Local workflow needs no setup. Local AI needs a separately installed Ollama model; AWS needs an existing deployment. Set optional configuration on the Python server, then restart. See README.md.</p><ul id="missing"></ul><p class="fine">Status checks only inspect local configuration. They do not verify AWS access, deploy resources or invoke a model.</p><button id="refresh" class="quiet">Refresh configuration ↻</button></section>
+      <section class="chat-card" aria-label="Chat with the selected project">
+        <div class="chat-heading"><div class="agent-avatar" aria-hidden="true">N</div><div><strong id="agent-name">NovaMart support</strong><span id="connection-status" role="status">Checking local configuration…</span></div><button id="new-chat" class="quiet">New chat +</button></div>
+        <div class="connection-note" id="connection-note">This interface calls your real AWS project when connected.</div>
+        <div class="messages" id="messages" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <div class="suggestions" id="suggestions" aria-label="Example prompts"></div>
+        <form id="chat-form">
+          <div class="customer-field" id="customer-field"><label for="customer">Demo customer</label><input id="customer" value="CUST-001" maxlength="64" pattern="[A-Za-z0-9_-]{1,64}" autocomplete="off"><span>Synthetic data only</span></div>
+          <div class="composer"><label class="sr-only" for="message">Your message</label><textarea id="message" maxlength="4000" rows="2" placeholder="Ask a question about your order…"></textarea><button type="submit" id="send" aria-label="Send message" disabled>↑</button></div>
+          <div class="composer-note"><span id="send-hint">Connect AWS to send. No simulated replies.</span><span id="char-count">0 / 4,000</span></div>
+        </form>
+      </section>
+      <footer class="main-footer"><span>BUILT TO SHOW THE WORK.</span><span>Local mode works without an AWS account.</span></footer>
+    </main>
+  </div>
+</body>
+</html>
