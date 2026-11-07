@@ -1,0 +1,2 @@
+# Optional. The UI and offline tests run using Python's standard library.
+boto3>=1.40,<2
